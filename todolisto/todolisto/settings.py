@@ -26,7 +26,8 @@ SECRET_KEY = 'yp89cors6#_ph%_-s3qdi2fxr6=*de@%79sj2&+aqr^*t)_ld-'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_URL = '/todolisto/login'
+LOGIN_REDIRECT_URL = '/todolisto/home'
 
 # Application definition
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.main',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'todolisto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,8 +77,11 @@ WSGI_APPLICATION = 'todolisto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'todolisto',
+        'HOST': 'localhost',
+        'USER': 'todo',
+        'PASSWORD': 'listo'
     }
 }
 
