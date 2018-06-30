@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    TodoListo! Bienvenido {{ user.username }}
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            {% if aux %}
+                <button class="btn btn-primary" type="submit">Agregar nueva tarea</button>
+            {% endif %}
+        </form>
+    </div>
+    <div clas="col-md-4">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th> Título </th>
+                    <th> Descripción </th>
+                </tr>
+                {% for t in tarea %}
+                <tr>
+                    <td>{{ t.titulo }}</td>
+                    <td>{{ t.descripcion }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

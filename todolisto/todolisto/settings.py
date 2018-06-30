@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 LOGIN_URL = '/todolisto/login'
-LOGIN_REDIRECT_URL = '/todolisto/home'
+LOGIN_REDIRECT_URL = '/todolisto/tareas'
 
 # Application definition
 
