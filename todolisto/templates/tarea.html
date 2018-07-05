@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+
+{% block content %}
+<div class="jumbotron">
+    <p>{{ tarea.id }}</p>
+    <p>{{ tarea.titulo }}</p>
+    <p>{{ tarea.descripcion }}</p>
+</div>
+{% endblock %}

@@ -43,3 +43,19 @@ def agregarTarea(request):
             'aux':True,
         }
         return render(request,'tareas.html',contexto)
+
+
+def infoTarea(request,tarea_id):
+    tarea = Tarea.objects.get(id = tarea_id)
+    usuario = request.user
+    contexto = {
+        'tarea':tarea,
+        'user':usuario,
+    }
+    return render(request,'tarea.html',contexto)
+
+def eliminarTarea(request,tarea_id):
+    tarea = Tarea.objects.get(id=tarea_id)
+    tarea.delete()
+    return redirect('tareas')
+

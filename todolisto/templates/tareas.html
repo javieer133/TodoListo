@@ -24,11 +24,17 @@
                 <tr>
                     <th> Título </th>
                     <th> Descripción </th>
+                    <th> Fecha Inicio </th>
+                    <th> Fecha Término </th>
+                    <th> Eliminar </th>
                 </tr>
                 {% for t in tarea %}
                 <tr>
                     <td>{{ t.titulo }}</td>
-                    <td>{{ t.descripcion }}</td>
+                    <td>{{ t.estado }}</td>
+                    <td>{{ t.fechaInicio }}</td>
+                    <td>{{ t.fechaTermino }}</td>
+                    <td><a class="btn btn-primary" href="{% url 'eliminarTarea' t.id %}"> Eliminar </a>
                 </tr>
                 {% endfor %}
             </table>
