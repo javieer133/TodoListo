@@ -5,6 +5,9 @@ from django.contrib.auth import login, logout
 from .models import Tarea
 from .form import AgregarTarea
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
+
+from django.views.generic.edit import  UpdateView
 # Create your views here.
 
 
@@ -44,7 +47,7 @@ def agregarTarea(request):
         }
         return render(request,'tareas.html',contexto)
 
-
+@login_required
 def infoTarea(request,tarea_id):
     tarea = Tarea.objects.get(id = tarea_id)
     usuario = request.user
@@ -54,8 +57,33 @@ def infoTarea(request,tarea_id):
     }
     return render(request,'tarea.html',contexto)
 
+@login_required
 def eliminarTarea(request,tarea_id):
     tarea = Tarea.objects.get(id=tarea_id)
     tarea.delete()
     return redirect('tareas')
+
+def calendarView(request):
+    tareas = Tarea.objects.filter(usuario = request.user)
+    usuario = request.user
+    contexto = {
+        'tareas':tareas,
+        'user':usuario,
+    }
+    return render(request,'calendario.html',contexto)
+
+
+class EditarTarea(UpdateView):
+    model = Tarea
+    template_name = 'editarTarea.html'
+    fields = [
+        'titulo',
+        'descripcion',
+        'fechaInicio',
+        'fechaTermino',
+        'usuario',
+        'estado',
+        'tipo',
+    ]
+    success_url = reverse_lazy('tareas')
 

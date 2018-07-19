@@ -5,7 +5,6 @@ from .models import Tarea
 class AgregarTarea(forms.ModelForm):
     class Meta:
         model = Tarea
-
         fields = [
             'titulo',
             'descripcion',
@@ -35,3 +34,5 @@ class AgregarTarea(forms.ModelForm):
             'estado': forms.Select(attrs={'class':'form-control'}),
             'tipo': forms.Select(attrs={'class':'form-control'}),
         }
+
+
