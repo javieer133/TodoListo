@@ -76,14 +76,6 @@ def calendarView(request):
 class EditarTarea(UpdateView):
     model = Tarea
     template_name = 'editarTarea.html'
-    fields = [
-        'titulo',
-        'descripcion',
-        'fechaInicio',
-        'fechaTermino',
-        'usuario',
-        'estado',
-        'tipo',
-    ]
+    form_class = AgregarTarea
     success_url = reverse_lazy('tareas')
 
